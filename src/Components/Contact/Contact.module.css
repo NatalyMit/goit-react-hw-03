@@ -1,0 +1,23 @@
+.cardsBox {
+  position: relative;
+}
+.contactBox {
+  display: flex;
+  align-items: center;
+}
+.contactName {
+  margin-left: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  color: black;
+}
+.btnDelete {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  border: 1px solid rgb(187, 184, 184);
+  border-radius: 4px;
+}
+.btnDeleteImg {
+  margin-right: 10px;
+}
