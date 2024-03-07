@@ -31,11 +31,10 @@ function App() {
       return prevContacts.filter(contact => contact.id !== contactId);
     });
   };
-  const filteredContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
