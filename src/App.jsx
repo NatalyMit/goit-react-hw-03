@@ -9,7 +9,7 @@ function App() {
   const [contacts, setContacts] = useState(() => {
     const savedContacts = window.localStorage.getItem('saved-contacts');
     if (savedContacts !== null) {
-      JSON.parse(savedContacts);
+      return JSON.parse(savedContacts);
     }
     return userData;
   });
@@ -18,6 +18,9 @@ function App() {
   }, [contacts]);
 
   const [filter, setFilter] = useState('');
+  const handleFilterChange = value => {
+    setFilter(value);
+  };
   const handleAddContact = newContact => {
     setContacts(prevContacts => {
       return [...prevContacts, newContact];
@@ -28,18 +31,20 @@ function App() {
       return prevContacts.filter(contact => contact.id !== contactId);
     });
   };
-  const handleFilterChange = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
   return (
     <div>
       <h1>Phonebook</h1>
 
       <ContactForm onAdd={handleAddContact} />
-      <SearchBox value={filter} onFilter={setFilter} />
+      <SearchBox value={filter} onFilter={handleFilterChange} />
 
       <ContactList
-        userData={handleFilterChange}
+        userData={filteredContacts}
         contactDelete={handleDeleteContacts}
       />
     </div>
